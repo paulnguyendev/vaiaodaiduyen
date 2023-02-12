@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\Admin\AffiliateController as AdminAffiliateController;
 use App\Http\Controllers\Admin\BunnyController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\InfoController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\MediaController;
@@ -206,6 +208,26 @@ Route::middleware('access.adminDashboard')->prefix($prefix)->group(function () {
     $routeName = "admin";
     Route::controller(AdminDashboardController::class)->group(function () use ($routeName) {
         Route::get('/', 'index')->name($routeName . '/index');
+    });
+    Route::prefix('categories')->group(function () {
+        $routeName = "admin_categories";
+        Route::controller(CategoriesController::class)->group(function () use ($routeName) {
+            Route::get('/', 'index')->name($routeName . '/index');
+            Route::get('/form/{id?}', 'form')->name($routeName . '/form');
+            Route::delete('/delete/{id?}', 'delete')->name($routeName . '/delete');
+            Route::delete('/destroy-multi/{id?}', 'destroyMulti')->name($routeName . '/destroy-multi');
+            Route::post('/save/{id?}', 'save')->name($routeName . '/save');
+        });
+    });
+    Route::prefix('infos')->group(function () {
+        $routeName = "admin_info";
+        Route::controller(InfoController::class)->group(function () use ($routeName) {
+            Route::get('/', 'index')->name($routeName . '/index');
+            Route::get('/form/{id?}', 'form')->name($routeName . '/form');
+            Route::delete('/delete/{id?}', 'delete')->name($routeName . '/delete');
+            Route::delete('/destroy-multi/{id?}', 'destroyMulti')->name($routeName . '/destroy-multi');
+            Route::post('/save/{id?}', 'save')->name($routeName . '/save');
+        });
     });
     Route::prefix('product-category')->group(function () {
         $routeName = "productCategory";
