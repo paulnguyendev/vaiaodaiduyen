@@ -1,7 +1,7 @@
 <?php
 return [
     'prefix' => [
-        'admin' => 'admin',
+        'admin' => 'quantri',
         'admin_auth' => 'admin/auth',
         'user' => 'user',
         'auth' => 'user/auth',
