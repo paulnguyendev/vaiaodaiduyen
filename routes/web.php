@@ -55,7 +55,15 @@ Route::prefix($prefix)->group(function () {
         Route::get('/', 'index')->name($routeName . '/index');
         Route::get('/subBanner', 'subBanner')->name($routeName . '/subBanner');
     });
-    Route::prefix('cart')->group(function () {
+    Route::prefix('')->group(function () {
+        $routeName = "fe_product";
+        Route::controller(FrontEndProductController::class)->group(function () use ($routeName) {
+            Route::get('/{category}', 'index')->name($routeName . '/index');
+            Route::get('/{category}/{category_child}/{product_slug}', 'index')->name($routeName . '/index');
+            Route::get('/{category}/{category_child}', 'index')->name($routeName . '/index');
+        });
+    });
+    Route::prefix('gio-hang')->group(function () {
         $routeName = "fe_cart";
         Route::controller(FrontEndCartController::class)->group(function () use ($routeName) {
             Route::get('/', 'index')->name($routeName . '/index');
@@ -72,14 +80,6 @@ Route::prefix($prefix)->group(function () {
             Route::get('/thanh-toan', 'checkout')->name($routeName . '/checkout');
             Route::get('/removeCookie', 'removeCookie')->name($routeName . '/removeCookie');
             Route::get('/order-success/{code?}', 'order_success')->name($routeName . '/order_success');
-        });
-    });
-    Route::prefix('product')->group(function () {
-        $routeName = "fe_product";
-        Route::controller(FrontEndProductController::class)->group(function () use ($routeName) {
-            Route::get('/{id?}', 'detail')->name($routeName . '/detail');
-            Route::get('/category/{id?}', 'category')->name($routeName . '/category');
-            Route::get('/supplier/{id?}', 'supplier')->name($routeName . '/supplier');
         });
     });
     Route::prefix('course')->group(function () {

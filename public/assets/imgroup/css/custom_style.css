@@ -1,0 +1,51 @@
+body {
+    color:#323232;
+	background:#db3370;
+}
+.ddsmoothmenu {
+	background:#db3370;
+}
+@media screen and (max-width: 800px) {
+    .dl-menuwrapper button, .dl-menuwrapper li > a:after, .no-touch .dl-menuwrapper li a:hover, .dl-menuwrapper button.dl-active, .dl-menuwrapper ul, .dl-menuwrapper button:hover,
+.dl-menuwrapper button.dl-active,
+.dl-menuwrapper ul {
+    	background:#db3370;
+    }
+}
+.ddsmoothmenu ul li a {
+	color:#fff;
+}
+.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover, .ddsmoothmenu ul li a.active {
+	color:#ffa3c5;
+}
+.ddsmoothmenu ul li ul {
+	background:#db3370;
+}
+.copyright, .sfooter {
+	color:#fff;
+}
+.footer {
+	background:#db3370;
+}
+a {
+    color: #323232;
+}
+a:hover, a.active {
+    color: #db3370;
+}
+.chitiet-sp, .buy-btn, .mua-sp, .Paging ul li a, .pagination ul li a, .webForm input[type="submit"], .webForm input[type="button"]{
+	background:#db3370;
+    color: #ffffff;
+}
+.buy-btn:hover, .mua-sp:hover, .chitiet-sp:hover, .Paging ul li a.Active, .Paging ul li a:hover, .pagination ul li a.active, .pagination ul li a:hover, .webForm input[type="submit"]:hover, .webForm input[type="button"]:hover {
+	background:#ffa3c5;
+    color: #db3370;
+}
+h3.title-side-bar, .title-h3, ul.navigation a, ul.supporter li, .statistic_number, .product-detail h1, .article-detail h1, .checkoutTitle {
+	color: #383838;
+}
+#back_to_top {
+	background:url('../upload/backgrounds/phototrans.png') left top no-repeat;}
+.product-infos span.price, .gia-sp-ct {
+	color: #94023c;
+}

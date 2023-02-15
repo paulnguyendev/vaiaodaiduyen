@@ -24,60 +24,42 @@ class ProductController extends Controller
     function __construct()
     {
         $this->model = new MainModel();
-        $this->taxonomyModel = new TaxonomyModel();
-        $this->productMetaModel = new ProductMetaModel();
-        $this->supplierModel = new SupplierModel();
         View::share('controllerName', $this->controllerName);
     }
-    public function detail(Request $request)
+    public function index(Request $request)
     {
-        $id = $request->id;
-        $item = $this->model::find($id);
-        if ($item) {
-            $item_meta = $this->productMetaModel->getItem(['product_id' => $id], ['task' => 'product_id']);
-            $item_supplier = $item->supplier()->first();
-            return view(
-                "{$this->pathViewController}/detail",
-                [
-                    'item' => $item,
-                    'item_meta' => $item_meta,
-                    'item_supplier' => $item_supplier,
-                ]
-            );
+        $category = $request->category;
+        $category_child = $request->category_child;
+        $product_slug = $request->product_slug;
+        $view = null;
+        if($product_slug) {
+            $view = "detail";
+        }
+        elseif($category_child) {
+            $view = "category_child";
         }
         else {
-            return redirect(route('home/index'));
+            if($category == 'gio-hang') {
+                $view = "cart";
+            }
+            elseif($category == 'thanh-toan') {
+                $view = "checkout";
+            }
+            elseif($category == 'hoan-tat-don-hang') {
+                $view = "complete";
+            }
+            else {
+                $view = "category";
+            }
+            
         }
-    }
-    public function data(Request $request)
-    {
-    }
-    public function category(Request $request) {
-        $id = $request->id;
-        $item = $this->taxonomyModel::find($id);
-        $items = $item->product_ids()->get();
-        $total = $item->product_ids()->count();
+       
         return view(
-            "{$this->pathViewController}/category",
+            "{$this->pathViewController}/{$view}",
             [
-                'items' => $items,
-                'item' => $item,
-                'total' => $total,
             ]
         );
     }
-    public function supplier(Request $request) {
-        $id = $request->id;
-        $item = $this->supplierModel ::find($id);
-        $items = $item->products()->get();
-        $total = $item->products()->count();
-        return view(
-            "{$this->pathViewController}/category",
-            [
-                'items' => $items,
-                'item' => $item,
-                'total' => $total,
-            ]
-        );
-    }
+   
+  
 }
